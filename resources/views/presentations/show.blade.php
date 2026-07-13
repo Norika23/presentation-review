@@ -4,7 +4,7 @@
 
 @section('content')
     <h1 class="page-title">{{ $presentation->title }}</h1>
-    <p class="page-lead">Share this QR code or URL so reviewers can score each student in this presentation.</p>
+    <p class="page-lead">Share this QR code or URL so students can log in with an ID or name and review the presentation.</p>
 
     <div class="card">
         <p><strong>Class:</strong> {{ $presentation->presentationType->classroom->name }}</p>
@@ -23,7 +23,7 @@
 
         {!! QrCode::format('svg')->size(280)->generate(route('evaluations.create', $presentation->token)) !!}
 
-        <p class="muted">Reviewers can open the evaluation form directly from this QR code.</p>
+        <p class="muted">Students can open the login page from this QR code. No email address is required.</p>
     </div>
 
     <div class="card">

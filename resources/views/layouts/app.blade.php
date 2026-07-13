@@ -366,7 +366,7 @@
                         <button class="button button-plain" type="submit">Log out</button>
                     </form>
                 @else
-                    <a class="button button-plain" href="{{ route('login') }}">Log in</a>
+                    <a class="button button-plain" href="{{ route('login') }}">Teacher log in</a>
                 @endauth
             </div>
         </div>

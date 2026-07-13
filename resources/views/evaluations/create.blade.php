@@ -11,6 +11,12 @@
         <p><strong>Type:</strong> {{ $presentation->presentationType->name }}</p>
         <p><strong>Title:</strong> {{ $presentation->title }}</p>
         <p><strong>Students:</strong> {{ $presentation->students->pluck('name')->join(', ') }}</p>
+        <p><strong>Logged in as:</strong> {{ $reviewerName }}</p>
+
+        <form method="POST" action="{{ route('evaluations.logout', $presentation->token) }}">
+            @csrf
+            <button class="button button-plain" type="submit">Use a different student ID or name</button>
+        </form>
     </div>
 
     @if ($errors->any())
@@ -26,12 +32,6 @@
     <div class="card">
         <form method="POST" action="{{ route('evaluations.store', $presentation->token) }}">
             @csrf
-
-            <div class="form-group">
-                <label for="reviewer_name">Reviewer name</label>
-                <input id="reviewer_name" type="text" name="reviewer_name" value="{{ old('reviewer_name') }}" placeholder="Example: 2-A-12 Suzuki" required>
-                <p class="hint">Use the same name consistently so duplicate submissions can be blocked per student.</p>
-            </div>
 
             @foreach($presentation->students as $index => $student)
                 <div class="card" style="margin-top: 24px;">

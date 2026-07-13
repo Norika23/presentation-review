@@ -41,5 +41,7 @@ Route::middleware(['auth', 'teacher'])->group(function () {
 });
 
 Route::get('/evaluate/{token}', [EvaluationController::class, 'create'])->name('evaluations.create');
+Route::post('/evaluate/{token}/login', [EvaluationController::class, 'login'])->name('evaluations.login');
+Route::post('/evaluate/{token}/logout', [EvaluationController::class, 'logout'])->name('evaluations.logout');
 Route::post('/evaluate/{token}', [EvaluationController::class, 'store'])->name('evaluations.store');
 Route::get('/student-results/{resultToken}', [StudentResultController::class, 'show'])->name('students.results');
