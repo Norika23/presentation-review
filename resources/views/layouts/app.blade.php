@@ -16,6 +16,8 @@
             --primary-dark: #1d4ed8;
             --danger-bg: #fff1f2;
             --danger-text: #be123c;
+            --success-bg: #ecfdf5;
+            --success-text: #047857;
         }
 
         .meta-row {
@@ -77,6 +79,16 @@
             color: var(--text);
         }
 
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-nav form {
+            margin: 0;
+        }
+
         .container {
             max-width: 960px;
             margin: 0 auto;
@@ -132,6 +144,16 @@
             background: #e0e7ff;
         }
 
+        .button-plain {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .button-plain:hover {
+            background: #f9fafb;
+        }
+
         .button-full {
             width: 100%;
         }
@@ -147,6 +169,12 @@
             margin-bottom: 18px;
         }
 
+        .form-help {
+            margin-top: 6px;
+            text-align: right;
+            font-size: 14px;
+        }
+
         label {
             display: block;
             font-weight: 700;
@@ -154,6 +182,8 @@
         }
 
         input[type="text"],
+        input[type="email"],
+        input[type="password"],
         textarea {
             width: 100%;
             border: 1px solid var(--border);
@@ -177,6 +207,14 @@
         .error {
             background: var(--danger-bg);
             color: var(--danger-text);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 20px;
+        }
+
+        .success {
+            background: var(--success-bg);
+            color: var(--success-text);
             border-radius: 12px;
             padding: 14px;
             margin-bottom: 20px;
@@ -319,8 +357,18 @@
 <body>
     <header class="app-header">
         <div class="app-header-inner">
-            <a class="brand" href="{{ route('classrooms.index') }}">Presentation Review</a>
-            <div class="muted">English presentation peer review</div>
+            <a class="brand" href="{{ auth()->check() ? route('home') : route('login') }}">Presentation Review</a>
+            <div class="header-nav">
+                @auth
+                    <div class="muted">{{ auth()->user()->name }} / {{ auth()->user()->role }}</div>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button class="button button-plain" type="submit">Log out</button>
+                    </form>
+                @else
+                    <a class="button button-plain" href="{{ route('login') }}">Log in</a>
+                @endauth
+            </div>
         </div>
     </header>
 

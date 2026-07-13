@@ -14,7 +14,7 @@
 
         <div class="actions">
             <a class="button button-secondary" href="{{ route('presentation-types.show', [$presentation->presentationType->classroom, $presentation->presentationType]) }}">Back to type</a>
-            <a class="button button-secondary" href="{{ route('presentations.results', $presentation) }}">View results</a>
+            <a class="button button-secondary" href="{{ route('presentations.results', $presentation) }}">Teacher results</a>
         </div>
     </div>
 
@@ -35,4 +35,24 @@
             </a>
         </p>
     </div>
+
+    <div class="card">
+        <h2>Student Results URLs</h2>
+
+        <ul class="list">
+            @foreach($presentation->students as $student)
+                <li class="list-item">
+                    <div class="list-title">{{ $student->name }}</div>
+                    <p class="url-box">
+                        <a href="{{ route('students.results', $student->result_token) }}" target="_blank">
+                            {{ route('students.results', $student->result_token) }}
+                        </a>
+                    </p>
+                </li>
+            @endforeach
+        </ul>
+
+        <p class="muted">Share each URL only with the matching student.</p>
+    </div>
+
 @endsection

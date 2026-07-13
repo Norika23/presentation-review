@@ -51,7 +51,10 @@ class PresentationController extends Controller
         ]);
 
         $presentation->students()->createMany(
-            $studentNames->map(fn ($name) => ['name' => $name])->all()
+            $studentNames->map(fn ($name) => [
+                'name' => $name,
+                'result_token' => Str::random(32),
+            ])->all()
         );
 
         return redirect()->route('presentation-types.show', [$classroom, $presentationType]);

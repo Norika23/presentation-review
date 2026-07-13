@@ -9,6 +9,7 @@ class Student extends Model
     protected $fillable = [
         'presentation_id',
         'name',
+        'result_token',
     ];
 
     public function presentation()
