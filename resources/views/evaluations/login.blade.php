@@ -23,6 +23,12 @@
     @endif
 
     <div class="card">
+        <a class="button button-google button-full" href="{{ route('auth.google.redirect', ['evaluation' => $presentation->token]) }}">
+            Continue with Google
+        </a>
+
+        <div class="form-divider"><span>or continue without email</span></div>
+
         <form method="POST" action="{{ route('evaluations.login', $presentation->token) }}">
             @csrf
 

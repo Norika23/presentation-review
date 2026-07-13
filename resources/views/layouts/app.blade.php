@@ -158,6 +158,36 @@
             width: 100%;
         }
 
+        .button-google {
+            background: white;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .button-google:hover {
+            background: #f9fafb;
+        }
+
+        .form-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 18px 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .form-divider::before,
+        .form-divider::after {
+            content: "";
+            flex: 1;
+            border-top: 1px solid var(--border);
+        }
+
+        .form-divider span {
+            white-space: nowrap;
+        }
+
         .actions {
             display: flex;
             flex-wrap: wrap;

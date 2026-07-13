@@ -3,8 +3,8 @@
 @section('title', 'Log in')
 
 @section('content')
-    <h1 class="page-title">Teacher Login</h1>
-    <p class="page-lead">Results and class management are available only to logged-in teacher accounts.</p>
+    <h1 class="page-title">Login</h1>
+    <p class="page-lead">Teachers and students can continue with their Google account.</p>
 
     @if (session('status'))
         <div class="success">{{ session('status') }}</div>
@@ -21,6 +21,12 @@
     @endif
 
     <div class="card">
+        <a class="button button-google button-full" href="{{ route('auth.google.redirect') }}">
+            Continue with Google
+        </a>
+
+        <div class="form-divider"><span>or use a teacher password</span></div>
+
         <form method="POST" action="{{ route('login.store') }}">
             @csrf
 
